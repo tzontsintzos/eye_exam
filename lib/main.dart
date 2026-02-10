@@ -153,7 +153,7 @@ class _EyeExamScreenState extends State<EyeExamScreen>
       case 'volumeUp':
         if (_leftReductions < 100) {
           setState(() {
-            _leftOpacity = (_leftOpacity + 0.025).clamp(0.0, 1.0);
+            _leftOpacity = (_leftOpacity + 0.01).clamp(0.0, 1.0);
             _leftReductions++;
           });
         }
@@ -161,7 +161,7 @@ class _EyeExamScreenState extends State<EyeExamScreen>
       case 'volumeDown':
         if (_rightReductions < 100) {
           setState(() {
-            _rightOpacity = (_rightOpacity + 0.025).clamp(0.0, 1.0);
+            _rightOpacity = (_rightOpacity + 0.01).clamp(0.0, 1.0);
             _rightReductions++;
           });
         }
