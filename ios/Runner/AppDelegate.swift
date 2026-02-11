@@ -55,6 +55,7 @@ import MediaPlayer
       } else {
         volumeChannel?.invokeMethod("volumeDown", arguments: nil)
       }
+        
 
       // Reset volume to middle to allow continuous button presses
       isResettingVolume = true
