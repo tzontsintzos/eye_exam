@@ -36,6 +36,30 @@ import MediaPlayer
     // Observe volume changes
     AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: [.new, .old], context: nil)
 
+    // Setup remote command center for play/pause button
+    let commandCenter = MPRemoteCommandCenter.shared()
+    commandCenter.togglePlayPauseCommand.isEnabled = true
+    commandCenter.togglePlayPauseCommand.addTarget { [weak self] _ in
+      self?.volumeChannel?.invokeMethod("playPause", arguments: nil)
+      return .success
+    }
+    commandCenter.playCommand.isEnabled = true
+    commandCenter.playCommand.addTarget { [weak self] _ in
+      self?.volumeChannel?.invokeMethod("playPause", arguments: nil)
+      return .success
+    }
+    commandCenter.pauseCommand.isEnabled = true
+    commandCenter.pauseCommand.addTarget { [weak self] _ in
+      self?.volumeChannel?.invokeMethod("playPause", arguments: nil)
+      return .success
+    }
+
+    // Set now playing info so the system recognizes us as a media app
+    MPNowPlayingInfoCenter.default().nowPlayingInfo = [
+      MPMediaItemPropertyTitle: "Eye Exam",
+      MPNowPlayingInfoPropertyPlaybackRate: 1.0
+    ]
+
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 

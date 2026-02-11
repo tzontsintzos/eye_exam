@@ -24,6 +24,14 @@ class MainActivity: FlutterActivity() {
                 methodChannel?.invokeMethod("volumeDown", null)
                 return true
             }
+            KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE,
+            KeyEvent.KEYCODE_MEDIA_PLAY,
+            KeyEvent.KEYCODE_MEDIA_PAUSE,
+            KeyEvent.KEYCODE_MEDIA_STOP,
+            KeyEvent.KEYCODE_HEADSETHOOK -> {
+                methodChannel?.invokeMethod("playPause", null)
+                return true
+            }
         }
         return super.onKeyDown(keyCode, event)
     }

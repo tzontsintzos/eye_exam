@@ -148,9 +148,12 @@ class _EyeExamScreenState extends State<EyeExamScreen>
   }
 
   Future<dynamic> _handleVolumeKey(MethodCall call) async {
-    if (_showResults) return;
     switch (call.method) {
+      case 'playPause':
+        _toggleResults();
+        break;
       case 'volumeUp':
+        if (_showResults) return;
         if (_leftReductions < 100) {
           setState(() {
             _leftOpacity = (_leftOpacity + 0.01).clamp(0.0, 1.0);
@@ -159,6 +162,7 @@ class _EyeExamScreenState extends State<EyeExamScreen>
         }
         break;
       case 'volumeDown':
+        if (_showResults) return;
         if (_rightReductions < 100) {
           setState(() {
             _rightOpacity = (_rightOpacity + 0.01).clamp(0.0, 1.0);
